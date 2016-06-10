@@ -1,0 +1,10 @@
+library(dplyr)
+setwd("C:/Users/cfgal/OneDrive/Documents/Coursera/Data Science Specialization/Exploratory Data Analysis/Assignment 1")
+hpc <- read.csv("household_power_consumption.txt", sep = ";", stringsAsFactors = FALSE)
+hpc <- subset(hpc, Date == "1/2/2007" | Date == "2/2/2007")
+hpc <- mutate(hpc, Date = as.Date(Date, "%d/%m/%Y"))
+hpc <- mutate(hpc, Global_active_power = as.numeric(Global_active_power))
+
+with(hpc, hist(Global_active_power, col = "red", xlab = "Global Active Power (kilowatts)", main = "Global Active Power"))
+dev.copy(png, file = "plot1.png", width = 480, height = 480)
+dev.off()
